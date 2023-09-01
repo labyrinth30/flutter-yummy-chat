@@ -73,6 +73,7 @@ class _main_screenState extends State<login_signup_screen> {
               ),
             ),
           ),
+          // 배경
           Positioned(
             top: 180,
             child: Container(
@@ -265,6 +266,77 @@ class _main_screenState extends State<login_signup_screen> {
                   ),
                 ],
               ),
+            ),
+          ),
+          // 텍스트폼 필드
+          Positioned(
+            top: 430,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                height: 90,
+                width: 90,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Colors.orange,
+                        Colors.red,
+                      ],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 5,
+                        spreadRadius: 1,
+                        color: Colors.black.withOpacity(0.3),
+                        offset: const Offset(0, 1),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // 전송 버튼
+          Positioned(
+            top: MediaQuery.of(context).size.height - 125,
+            right: 0,
+            left: 0,
+            child: Column(
+              children: [
+                const Text(
+                  'or signup with',
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextButton.icon(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size(150, 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: Palette.googleColor,
+                  ),
+                  icon: const Icon(Icons.add),
+                  label: const Text("Google"),
+                ),
+              ],
             ),
           ),
         ],
