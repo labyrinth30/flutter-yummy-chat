@@ -79,9 +79,13 @@ class _main_screenState extends State<login_signup_screen> {
             ),
           ),
           // 배경
-          Positioned(
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeIn,
             top: 180,
-            child: Container(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeIn,
               padding: const EdgeInsets.all(
                 20,
               ),
