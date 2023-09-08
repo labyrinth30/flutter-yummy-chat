@@ -32,22 +32,25 @@ class _main_screenState extends State<login_signup_screen> {
                 ),
               ),
               child: Container(
-                padding: const EdgeInsets.only(top: 90, left: 20),
+                padding: const EdgeInsets.only(
+                  top: 90,
+                  left: 20,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         text: 'Welcome',
-                        style: TextStyle(
+                        style: const TextStyle(
                           letterSpacing: 1.0,
                           fontSize: 25,
                           color: Colors.white,
                         ),
                         children: [
                           TextSpan(
-                            text: ' to Yummy Chat!',
-                            style: TextStyle(
+                            text: isSignedScreen ? ' to Yummy Chat!' : ' Back',
+                            style: const TextStyle(
                               letterSpacing: 1.0,
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
@@ -60,9 +63,11 @@ class _main_screenState extends State<login_signup_screen> {
                     const SizedBox(
                       height: 5,
                     ),
-                    const Text(
-                      'Signup to continue',
-                      style: TextStyle(
+                    Text(
+                      isSignedScreen
+                          ? 'Signup to continue'
+                          : 'Signin to continue',
+                      style: const TextStyle(
                         letterSpacing: 1.0,
                         fontSize: 15,
                         color: Colors.white,
@@ -80,7 +85,7 @@ class _main_screenState extends State<login_signup_screen> {
               padding: const EdgeInsets.all(
                 20,
               ),
-              height: 280,
+              height: isSignedScreen ? 280 : 250,
               width: MediaQuery.of(context).size.width - 40,
               margin: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
@@ -159,10 +164,117 @@ class _main_screenState extends State<login_signup_screen> {
                       ),
                     ],
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 20),
-                    child: Form(
-                      child: Column(
+                  if (isSignedScreen)
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      child: Form(
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.account_circle,
+                                  color: Palette.iconColor,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Palette.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Palette.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                hintText: 'Username',
+                                hintStyle: TextStyle(
+                                  fontSize: 15,
+                                  color: Palette.textColor1,
+                                ),
+                                contentPadding: EdgeInsets.all(10),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  color: Palette.iconColor,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Palette.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Palette.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                hintText: 'email',
+                                hintStyle: TextStyle(
+                                  fontSize: 15,
+                                  color: Palette.textColor1,
+                                ),
+                                contentPadding: EdgeInsets.all(10),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  color: Palette.iconColor,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Palette.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Palette.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                hintText: 'password',
+                                hintStyle: TextStyle(
+                                  fontSize: 15,
+                                  color: Palette.textColor1,
+                                ),
+                                contentPadding: EdgeInsets.all(10),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  if (!isSignedScreen)
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      child: Form(
+                          child: Column(
                         children: [
                           TextFormField(
                             decoration: const InputDecoration(
@@ -200,39 +312,6 @@ class _main_screenState extends State<login_signup_screen> {
                           TextFormField(
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
-                                Icons.email,
-                                color: Palette.iconColor,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Palette.textColor1,
-                                ),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(35.0),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Palette.textColor1,
-                                ),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(35.0),
-                                ),
-                              ),
-                              hintText: 'email',
-                              hintStyle: TextStyle(
-                                fontSize: 15,
-                                color: Palette.textColor1,
-                              ),
-                              contentPadding: EdgeInsets.all(10),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(
                                 Icons.lock,
                                 color: Palette.iconColor,
                               ),
@@ -252,7 +331,7 @@ class _main_screenState extends State<login_signup_screen> {
                                   Radius.circular(35.0),
                                 ),
                               ),
-                              hintText: 'password',
+                              hintText: 'Password',
                               hintStyle: TextStyle(
                                 fontSize: 15,
                                 color: Palette.textColor1,
@@ -261,16 +340,15 @@ class _main_screenState extends State<login_signup_screen> {
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                  ),
+                      )),
+                    )
                 ],
               ),
             ),
           ),
           // 텍스트폼 필드
           Positioned(
-            top: 430,
+            top: isSignedScreen ? 430 : 390,
             left: 0,
             right: 0,
             child: Center(
@@ -317,8 +395,8 @@ class _main_screenState extends State<login_signup_screen> {
             left: 0,
             child: Column(
               children: [
-                const Text(
-                  'or signup with',
+                Text(
+                  isSignedScreen ? 'or signup with' : 'or signin with',
                 ),
                 const SizedBox(
                   height: 10,
@@ -339,6 +417,7 @@ class _main_screenState extends State<login_signup_screen> {
               ],
             ),
           ),
+          // 구글 로그인 버튼
         ],
       ),
     );
