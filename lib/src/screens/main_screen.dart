@@ -1,7 +1,10 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:yummy_chat/src/models/palette.dart';
+import 'package:yummy_chat/src/models/weatherIcon.dart';
+import 'package:yummy_chat/src/services/api_services.dart';
 
 class login_signup_screen extends StatefulWidget {
   const login_signup_screen({super.key});
@@ -11,7 +14,29 @@ class login_signup_screen extends StatefulWidget {
 }
 
 class _main_screenState extends State<login_signup_screen> {
+  String weatherData = '';
   bool isSignedScreen = true;
+  @override
+  void initState() {
+    super.initState();
+    getPosition();
+  }
+
+  Future<void> getPosition() async {
+    try {
+      var locationService = LocationService();
+      var currentPosition = await locationService.getCurrentPosition();
+
+      var lat = currentPosition.latitude.toString();
+      var lon = currentPosition.longitude.toString();
+
+      print('$lat, $lon');
+
+      // 날씨 데이터 가져오기 등 추가 작업 수행 가능
+    } catch (e) {
+      print('Error getting position: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +60,7 @@ class _main_screenState extends State<login_signup_screen> {
                 padding: const EdgeInsets.only(
                   top: 90,
                   left: 20,
+                  right: 20,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,15 +89,25 @@ class _main_screenState extends State<login_signup_screen> {
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      isSignedScreen
-                          ? 'Signup to continue'
-                          : 'Signin to continue',
-                      style: const TextStyle(
-                        letterSpacing: 1.0,
-                        fontSize: 15,
-                        color: Colors.white,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          isSignedScreen
+                              ? 'Signup to continue'
+                              : 'Signin to continue',
+                          style: const TextStyle(
+                            letterSpacing: 1.0,
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: WeatherIcon.snowy,
+                        ),
+                      ],
                     )
                   ],
                 ),
