@@ -351,12 +351,16 @@ class _main_screenState extends State<login_signup_screen> {
             ),
           ),
           // 텍스트폼 필드
-          Positioned(
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeIn,
             top: isSignedScreen ? 430 : 390,
             left: 0,
             right: 0,
             child: Center(
-              child: Container(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeIn,
                 padding: const EdgeInsets.all(15),
                 height: 90,
                 width: 90,
