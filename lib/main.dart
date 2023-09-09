@@ -16,13 +16,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: const MaterialApp(
-        home: login_signup_screen(),
-      ),
+    return const MaterialApp(
+      home: login_signup_screen(),
     );
   }
 }
